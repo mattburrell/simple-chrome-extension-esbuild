@@ -1,6 +1,6 @@
 # Simple Chrome Extension Using TypeScript, React and esbuild
 
-Demo repo showing how to create a Chrome Extension using TypeScript, React and esbuild
+Demo repo showing how to create a Chrome Extension using TypeScript, React and esbuild. Supports CSS modules.
 
 ## Dependencies
 
