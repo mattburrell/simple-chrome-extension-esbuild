@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HelloWorld } from "./HelloWorld";
-import "./index.css";
 
 const appId = "_content_script_";
 

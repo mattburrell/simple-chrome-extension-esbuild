@@ -1,12 +1,16 @@
+import styles from "./HelloWorld.module.css";
+
 export function HelloWorld() {
   const handleOnClick = () => {
     alert("You clicked me!");
   };
 
   return (
-    <div className="content">
-      <h1>Hello World!</h1>
-      <button onClick={handleOnClick}>Click Me</button>
+    <div className={styles.content}>
+      <h1 className={styles.heading}>Hello World!</h1>
+      <button className={styles.btn} onClick={handleOnClick}>
+        Click Me
+      </button>
     </div>
   );
 }

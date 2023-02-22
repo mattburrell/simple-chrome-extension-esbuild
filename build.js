@@ -4,6 +4,7 @@ import * as esbuild from "esbuild";
 import fs from "fs";
 import path from "node:path";
 import colors from "picocolors";
+import cssModulesPlugin from "esbuild-css-modules-plugin";
 
 async function build() {
   const outputDir = "./dist";
@@ -23,6 +24,15 @@ async function build() {
 
   const entryPoints = [path.resolve("src", "popup", popupEntry)];
 
+  const plugins = [
+    cssModulesPlugin({
+      inject: false,
+      filter: /\.module?\.css$/i,
+      v2: true,
+      bundle: true,
+    }),
+  ];
+
   if (!isDev) {
     entryPoints.push(
       path.resolve("src", "content", contentEntry),
@@ -30,6 +40,7 @@ async function build() {
     );
     await esbuild.build({
       entryPoints: entryPoints,
+      plugins: plugins,
       outdir: outputDir,
       bundle: true,
       minify: true,
@@ -49,6 +60,7 @@ async function build() {
     }
     const context = await esbuild.context({
       entryPoints: entryPoints,
+      plugins: plugins,
       outdir: devDir,
       bundle: true,
       minify: true,
@@ -68,7 +80,9 @@ async function build() {
       port: PORT,
     });
 
-    const url = `${colors.cyan("http://localhost")}:${colors.cyan(colors.bold(PORT))}`;
+    const url = `${colors.cyan("http://localhost")}:${colors.cyan(
+      colors.bold(PORT)
+    )}`;
     console.log(`  ${colors.green("➜")}  ${colors.bold("Local")}:   ${url}`);
   }
 }
