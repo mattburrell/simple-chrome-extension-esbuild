@@ -1,4 +1,4 @@
-import styles from "./HelloWorld.module.css";
+import styles from "./hello-world.module.css";
 
 export function HelloWorld() {
   const handleOnClick = () => {
